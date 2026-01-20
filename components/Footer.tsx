@@ -9,6 +9,8 @@ const footerLinks = {
   company: [
     { href: '/about', label: 'About Us' },
     { href: '/services', label: 'Services' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/usecases', label: 'Use Cases' },
     { href: '/contact', label: 'Contact' },
   ],
   services: [
@@ -17,6 +19,10 @@ const footerLinks = {
     { href: '/services#react-native', label: 'React Native' },
     { href: '/services#aws', label: 'AWS' },
     { href: '/services#ai-ml', label: 'AI/ML' },
+  ],
+  legal: [
+    { href: '/privacy', label: 'Privacy Policy' },
+    { href: '/terms', label: 'Terms & Conditions' },
   ],
 }
 
@@ -30,7 +36,7 @@ export default function Footer() {
   return (
     <footer className="relative bg-navy-dark border-t border-primary-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand */}
           <div>
             <Link href="/" className="mb-4 inline-block">
@@ -92,6 +98,23 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Legal Links */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Legal</h3>
+            <ul className="space-y-2">
+              {footerLinks.legal.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-400 hover:text-accent-light transition-colors text-sm"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact Info */}
           <div>
             <h3 className="text-white font-semibold mb-4">Contact</h3>
@@ -125,9 +148,19 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-primary-800/50 pt-8">
-          <p className="text-center text-gray-500 text-sm">
-            © {new Date().getFullYear()} ROC Solution. All rights reserved.
-          </p>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-center md:text-left text-gray-500 text-sm">
+              © {new Date().getFullYear()} ROC Solution. All rights reserved.
+            </p>
+            <div className="flex gap-6">
+              <Link href="/privacy" className="text-gray-500 hover:text-accent-light transition-colors text-sm">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="text-gray-500 hover:text-accent-light transition-colors text-sm">
+                Terms & Conditions
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
